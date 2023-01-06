@@ -1,6 +1,6 @@
 
 import { StyledDiv, List, ListItem, ListButton } from "./phonebook.style"
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteContacts } from "redux/operations";
 
 export const Phonebook = ({ filterContacts }) => {
