@@ -32,7 +32,6 @@ const App = () => {
         <Section title='Contacts'>
           <Filter
           />
-          {contactsFromStore.lenght > 0 ? 'Contacts' : 'No contacts'}
           <Phonebook
             contacts={contactsFromStore}
             filterContacts={getFilterContacts()}
