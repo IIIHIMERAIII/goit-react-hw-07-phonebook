@@ -5,9 +5,7 @@ import { deleteContacts } from "redux/operations";
 
 export const Phonebook = ({ filterContacts }) => {
     const dispatch = useDispatch();
-
-    const isLoading = useSelector(state => state.contacts.contacts.isLoading);
-
+  
     const deleteContact = contactId => {
         dispatch(deleteContacts(contactId));
     };
