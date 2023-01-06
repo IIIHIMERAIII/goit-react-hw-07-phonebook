@@ -10,7 +10,6 @@ import { fetchContacts } from 'redux/operations';
 
 const App = () => {
   const contactsFromStore = useSelector(state => state.contacts.contacts.items);
-  const isLoading = useSelector(state => state.contacts.contacts.isLoading);
   const filterFromStore = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
