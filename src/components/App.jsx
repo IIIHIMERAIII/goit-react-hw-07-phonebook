@@ -3,11 +3,26 @@ import { Section } from './section/section';
 import { Form } from './contactForm/form';
 import { Filter } from './filter/filter';
 import { Phonebook } from "./phonebook/phonebook";
-import { getContacts } from 'redux/selectors';
 import { useSelector } from 'react-redux';
+import { useDispatch, } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchContacts } from 'redux/operations';
 
 const App = () => {
-  const contacts = useSelector(getContacts);
+  const contactsFromStore = useSelector(state => state.contacts.contacts.items);
+  const isLoading = useSelector(state => state.contacts.contacts.isLoading);
+  const filterFromStore = useSelector(state => state.filter);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  const getFilterContacts = () => {
+    return contactsFromStore.filter(el =>
+      el.name.toLowerCase().includes(filterFromStore.toLowerCase())
+    );
+  };
 
   return (
     <div>
@@ -18,8 +33,10 @@ const App = () => {
         <Section title='Contacts'>
           <Filter
           />
-          {contacts.length > 0 ? 'Contacts' : 'No contacts'}
+          {contactsFromStore.lenght > 0 ? 'Contacts' : 'No contacts'}
           <Phonebook
+            contacts={contactsFromStore}
+            filterContacts={getFilterContacts()}
           />
         </Section>
       </Section>

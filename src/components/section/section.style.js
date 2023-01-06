@@ -4,7 +4,7 @@ export const Sections = styled.section`
   border-top: 1px solid black;
   margin-top: 25px;
   margin-bottom: 25px;
-  min-width: 275px;
+  min-width: 390px;
 `;
 export const Title = styled.h2`
   margin-top: 25px;

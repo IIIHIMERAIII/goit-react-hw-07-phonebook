@@ -1,32 +1,26 @@
 
 import { StyledDiv, List, ListItem, ListButton } from "./phonebook.style"
 import { useSelector, useDispatch } from "react-redux";
-import { getContacts, getFilter } from "redux/selectors";
-import { delContact } from "redux/contactsSlice";
+import { deleteContacts } from "redux/operations";
 
-
-
-export const Phonebook = () => {
-    const contacts = useSelector(getContacts);
-    const filter = useSelector(getFilter);
+export const Phonebook = ({ filterContacts }) => {
     const dispatch = useDispatch();
 
-    const filteredContacts = () => {
-        return contacts.filter(contact =>
-            contact.name.toLowerCase().includes(filter.toLowerCase())
-        );
+    const isLoading = useSelector(state => state.contacts.contacts.isLoading);
+
+    const deleteContact = contactId => {
+        dispatch(deleteContacts(contactId));
     };
 
-    const filtered = filteredContacts();
     return (
         <StyledDiv>
             <List>
-                {filtered.map(contact => (
+                {filterContacts.map(contact => (
                     <ListItem key={contact.id}>
-                        <span>{contact.name}: {contact.number}</span>
+                        <span>{contact.name}: {contact.phone}</span>
                         <ListButton
                             onClick={() => {
-                                dispatch(delContact(contact.id));
+                                deleteContact(contact.id);
                             }}
                             type="button">
                             Delete
