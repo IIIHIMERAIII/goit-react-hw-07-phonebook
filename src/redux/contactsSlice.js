@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchContacts, addContacts, deleteContacts } from "./operations";
 
+
 const contactsState = {
     contacts: {
         items: [],
         isLoading: false,
         error: null
     },
-    filter: ""
 };
 
 const contactsSlice = createSlice({
